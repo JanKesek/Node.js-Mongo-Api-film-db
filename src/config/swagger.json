@@ -1,0 +1,63 @@
+{
+	"title": "Film api",
+	"description": "Crud",
+	"swagger":"2.0",
+	"host":"localhost:3000",
+	"basePath":"/api",
+	"tags": [
+		{
+			"name": "Films",
+			"description": "API for Films Endpoints"
+		}
+	],
+	"schemes": ["http"],
+	"consumes": ["application/json"],
+	"produces": ["application/json"],
+	"paths": {
+		"/films": {
+			"post": {
+				"tags": ["Films"],
+				"summary": "API Endpoint for adding new films",
+				"description": "Create new film in database",
+				"parameters":[
+					{
+						"name":"film",
+						"description": "film paramaters for adding another film to database",
+						"in": "body",
+						"required": "true",
+						"schema": {
+							"$ref": "#definitions/Film"
+						}
+					}
+				],
+				"produces" : ["application/json"],
+				"responces":{
+					"200":{
+						"description" : "new film created",
+						"schema": {
+							"$ref":"#definitions/Film"
+						}
+					}
+				}
+			}
+		}
+	},
+	"definitions":{
+		"Film": {
+			"required": ["title", "url", "rating"],
+			"properties": {
+
+				"title": {
+					"type": "string"
+				},
+				"url": {
+					"type": "string"
+				},
+				"rating": {
+					"type": "integer",
+					"format": "Int32"
+				}
+			}
+		}
+	}
+}

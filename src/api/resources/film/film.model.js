@@ -1,4 +1,6 @@
 import mongoose from 'mongoose'
+import mongoosePaginate from 'mongoose-paginate'
+
 const { Schema } = mongoose;
 const filmSchema = new Schema({
 	title: {
@@ -16,4 +18,5 @@ const filmSchema = new Schema({
 		max: 10,
 	},
 });
+filmSchema.plugin(mongoosePaginate)
 export default mongoose.model('Film', filmSchema)
