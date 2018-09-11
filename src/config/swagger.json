@@ -3,7 +3,7 @@
 	"description": "Crud",
 	"swagger":"2.0",
 	"host":"localhost:3000",
-	"basePath":"/api",
+	"basePath":"/",
 	"tags": [
 		{
 			"name": "Films",
@@ -14,7 +14,7 @@
 	"consumes": ["application/json"],
 	"produces": ["application/json"],
 	"paths": {
-		"/films": {
+		"films": {
 			"post": {
 				"tags": ["Films"],
 				"summary": "API Endpoint for adding new films",
@@ -39,6 +39,61 @@
 						}
 					}
 				}
+			},
+			"get":{
+				"tags": ["Films"],
+				"summary": "API Endpoint for finding all films",
+				"description": "Find all films from the database",
+				"parameters": [
+					{
+						"name": "page",
+						"type": "integer",
+						"description": "Define the page index for the records",
+						"in":"query"
+					},
+					{
+						"name":"perPage",
+						"type":"integer",
+						"description":"Define limit for number of records (for example:10)",
+						"in":"query"
+					}
+				],
+				"produces": ["application/json"],
+				"responces":{
+					"200": {
+						"description":"All the films",
+						"schema": {
+							"$ref": "#definitions/Films"
+						}
+					}
+				}
+			}
+		},
+		"/films/{id}": {
+		
+			"parameters":[
+				{
+						"name":"id",
+						"description": "id of the film",
+						"in": "path",
+						"required": "true",
+						"type":"string"
+						
+				}
+			],
+			"get":{
+				"tags": ["Films"],
+				"summary": "API Endpoint for finding single film",
+				"description": "Find one film from the database",
+				"produces": ["application/json"],
+				"responces":{
+					"200": {
+						"description":"Film has been found",
+						"schema": {
+							"$ref": "#definitions/Film"
+						}
+					}
+				}
 			}
 		}
 	},
@@ -56,6 +111,28 @@
 				"rating": {
 					"type": "integer",
 					"format": "Int32"
+				}
+			}
+		},
+		"Films": {
+			"properties":{
+				"docs":{
+					"type":"array",
+					"items": {
+					"$ref":"#definitions/Film"
+					}
+				},
+				"total":{
+					"type": "integer"
+				},
+				"pages":{
+					"type":"integer"
+				},
+				"limit":{
+					"type":"integer"
+				},
+				"page":{
+					"type":"integer"
 				}
 			}
 		}

@@ -17,6 +17,7 @@ const filmSchema = new Schema({
 		min: 0.0,
 		max: 10,
 	},
+	versionKey: false
 });
 filmSchema.plugin(mongoosePaginate)
 export default mongoose.model('Film', filmSchema)
