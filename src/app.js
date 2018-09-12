@@ -14,8 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(logger('dev'));
 
 app.use('/api', restRouter);
-app.use(
-  '/api-docs',
+app.use('/',
   swaggerUi.serve,
   swaggerUi.setup(swaggerDocument, {
     explorer: true,

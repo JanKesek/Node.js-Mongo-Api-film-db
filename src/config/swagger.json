@@ -6,11 +6,11 @@
       "basePath": "/api",
       "tags": [
         {
-          "name": "Films",
+          "name": "agile-shelf-79548.herokuapp.com",
           "description": "API for films Endpoints"
         }
       ],
-      "schemes": ["http"],
+      "schemes": ["http", "https"],
       "consumes": ["application/json"],
       "produces": ["application/json"],
       "paths" :{
