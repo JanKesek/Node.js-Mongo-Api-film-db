@@ -1,10 +1,6 @@
 {
     "title" : "Film API Documentation",
     "description" : "Film API",
-    "license": {
-        "name": "MIT",
-        "url": "https://opensource.org/licenses/MIT"
-      },
       "version": "1.0.0",
       "host": "localhost:3000",
       "basePath": "/api",
@@ -21,32 +17,32 @@
         "/films":{
          "post":{
            "tags": ["Films"],
-           "summary": "API Endpoint for creating Film",
-           "description" : "Create new Film in a database",
+           "summary": "API Endpoint for adding  new film to database",
+           "description" : "Create new film in database",
            "parameters":[
              {
                "name": "film",
-               "description": "Film parameters for creating new film",
+               "description": "film params to create new film",
                "in": "body",
                "required": "true",
                "schema" : {
-                 "$ref" : "#definitions/Film"
+                 "$ref" : "#definitions/film"
                }
              }
            ],
            "produces" : ["application/json"],
            "responses":{
              "200":{
-               "description" : "New Film Created",
+               "description" : "New film Created",
                "schema": {
-                "$ref" : "#definitions/Film"
+                "$ref" : "#definitions/film"
                }
              }
            }
          },
          "get":{
           "tags": ["Films"],
-          "summary": "API Endpoint to find all films",
+          "summary": "API Endpoint to find all films in database",
           "description" : "Find all films from the database",
           "parameters":[
             {
@@ -58,16 +54,16 @@
             {
               "name": "perPage",
               "type": "integer",
-              "description": "Define the limiet for the records i.e 10",
+              "description": "Define the limit for the records for example: 10",
               "in": "query"
             }
           ],
           "produces" : ["application/json"],
           "responses":{
             "200":{
-              "description" : "All the films:",
+              "description" : "All the films",
               "schema": {
-               "$ref" : "#definitions/Films"
+               "$ref" : "#definitions/films"
               }
             }
           }
@@ -91,13 +87,52 @@
             "produces" : ["application/json"],
             "responses":{
               "200":{
-                "description" : "Film has been found",
+                "description" : "film has found",
                 "schema": {
-                 "$ref" : "#definitions/Film"
+                 "$ref" : "#definitions/film"
                 }
               }
             }
-          }}
+          },
+          "delete":{
+            "tags": ["Films"],
+            "summary": "API Endpoint to delete the film",
+            "description" : "Delete film from the database",
+            "produces" : ["application/json"],
+            "responses":{
+              "200":{
+                "description" : "film has deleted",
+                "schema": {
+                 "$ref" : "#definitions/film"
+                }
+              }
+            }
+          },
+          "put":{
+            "tags": ["Films"],
+            "summary": "API Endpoint for update film",
+            "description" : "Update the existing film in database",
+            "parameters":[
+              {
+                "name": "film",
+                "description": "film params to update the film",
+                "in": "body",
+                "schema" : {
+                  "$ref" : "#definitions/Updatefilm"
+                }
+              }
+            ],
+            "produces" : ["application/json"],
+            "responses":{
+              "200":{
+                "description" : "film has Updated",
+                "schema": {
+                 "$ref" : "#definitions/film"
+                }
+              }
+            }
+          }
+        }
       },
       "definitions":{
         "Film":{
@@ -118,11 +153,25 @@
             }
           }
         },
+        "UpdateFilm":{
+          "properties":{
+            "title": {
+              "type" : "string"
+            },
+            "url": {
+              "type" : "string"
+            },
+            "rating": {
+              "type" : "integer",
+              "format" :"Int32"
+            }
+          }
+        },
         "Films":{
           "properties":{
             "docs": {
               "type" : "array",
-              "$ref": "#definitions/Film"
+              "$ref": "#definitions/film"
             },
             "total": {
               "type" : "integer"

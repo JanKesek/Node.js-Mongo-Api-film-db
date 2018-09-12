@@ -6,7 +6,7 @@ import { restRouter } from './api';
 import swaggerDocument from './config/swagger.json';
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 connect();
 app.use(express.json());
